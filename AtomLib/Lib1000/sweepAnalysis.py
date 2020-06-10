@@ -8,9 +8,10 @@ import os
 
 script_dir=os.path.abspath(os.path.dirname(__file__))
 # Folder name and input data file name
-fol_path = os.path.join(script_dir,'60nmAl2O3sweepTE')
-E_path=os.path.join(fol_path,'Lib1000sweep_E.txt')
-T_path=os.path.join(fol_path,'Lib1000sweep_T.txt')
+# PY_S4/AtomLib/Lib562/40nmAl2O3sweepTE/
+fol_path = os.path.join('/home/ping-yen/Simulation/')
+E_path=os.path.join(fol_path,'Test_E.txt')
+#T_path=os.path.join(fol_path,'Test_T.txt')
 #fEnew = open('100nmAl2O3sweepTE/Enew2.txt','w')
 # Unwrapping and normalizing the phase data
 def NorPhase(Edata):
@@ -30,8 +31,15 @@ def NorPhase(Edata):
             theta[i]+=1"""
     return(theta)
     
-inf1 = np.loadtxt(T_path,dtype='complex_')
+#inf1 = np.loadtxt(T_path,dtype='complex_')
 inf2 = np.loadtxt(E_path,dtype='complex_')
+
+test1 = NorPhase(inf2)
+plt.plot(np.linspace(30,250,110),test1)
+plt.savefig(os.path.join(fol_path,'E.png'))
+
+
+
 
 # Create radius and height array
 x_axis=[]
@@ -45,7 +53,7 @@ for i in range(500,1500,10):
 T=np.array(inf1)
 print(T.shape)
 plt.figure(1)
-plt.imshow(np.abs(T),vmin=0.00000,vmax=0.01,cmap='jet',extent=[100,450,1500,500],aspect='auto')
+plt.imshow(np.abs(T),vmin=0.00000,vmax=0.4,cmap='jet',extent=[100,450,1500,500],aspect='auto')
 plt.colorbar()
 plt.savefig(os.path.join(fol_path,'SweepT.png'))
 
