@@ -1,0 +1,9 @@
+# Analysis of meta-atom library
+# Unit in "nm"
+PY_S4_Analysis:
+        radii_range: [30,250,2]
+        height_range: [500,1500,10]
+        inputFile_T: "/home/pingyen/Simulation/S4/PY_S4/AtomLib/Lib562sweep_T2.txt"
+        inputFile_E: "/home/pingyen/Simulation/S4/PY_S4/AtomLib/Lib562sweep_E2.txt"
+        outputPath: "/home/pingyen/Simulation/S4/PY_S4/AtomLib/"
+        outputName: "sweep562_test"
