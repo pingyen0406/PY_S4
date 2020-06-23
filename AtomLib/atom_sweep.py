@@ -72,7 +72,9 @@ def PY_S4(cfg):
             # Use 12.1891 from my ellipsometer 20191204 
             S.SetMaterial(Name = 'Fusedsilica', Epsilon = 2.0851)
             S.SetMaterial(Name = 'Vacuum', Epsilon = 1)
-            S.SetMaterial(Name = 'Al2O3', Epsilon=3.04852)
+            # epsilon of SiO2 -> 2.09771, Al2O3-> 3.04852
+            # I don't chane the name for simplicity
+            S.SetMaterial(Name = 'Al2O3', Epsilon=2.09771) 
                                    
             # Layer definition
             S.AddLayer(

@@ -1,0 +1,12 @@
+# Sweep of period of 562nm meta-atom library with SiO2 hardmask
+# Unit in "nm"
+PY_S4:
+        period: 562
+        radii_range: [50,250,2]
+        height_range: [500,1500,10]
+        wavelength: 1550
+        h_alumina: 60
+        angle: 35.236 # effective index of 69nmSiO2=2.83716 -> 35.236 degrees
+        outputPath: "/home/pingyen/Simulation/S4/PY_S4/AtomLib/Lib562/60nmSiO2/"
+        outputName: "Lib562sweep"
+
