@@ -1,5 +1,4 @@
 # 3D meta-atom TIR Library Simulation
-# This is for 800nm lattice
 # Ping-Yen 
 import S4
 import numpy as np
@@ -18,7 +17,9 @@ class PY_S4_Config:
              'radii_range': (list,True),
              'height_range': (list,True),
              'wavelength': (int,True),
-             'h_alumina': (int,True),
+             'h_mask': (int,True),
+             'epsilon': (float,True),
+	     'top_mask': (bool,True),
              'angle': (float,True),
              'outputPath': (str,True),
             'outputName':(str,True)}
@@ -70,11 +71,11 @@ def PY_S4(cfg):
             # 12.0647 from Lumerical
             # Use 11.7649 for repeating Faraon's paper, 
             # Use 12.1891 from my ellipsometer 20191204 
-            S.SetMaterial(Name = 'Fusedsilica', Epsilon = 2.0851)
+            S.SetMaterial(Name = 'Fusedsilica', Epsilon = cfg.epsilon)
             S.SetMaterial(Name = 'Vacuum', Epsilon = 1)
             # epsilon of SiO2 -> 2.09771, Al2O3-> 3.04852
             # I don't chane the name for simplicity
-            S.SetMaterial(Name = 'Al2O3', Epsilon=2.09771) 
+            S.SetMaterial(Name = 'mask', Epsilon=cfg.epsilon) 
                                    
             # Layer definition
             S.AddLayer(
@@ -82,17 +83,18 @@ def PY_S4(cfg):
                 Thickness = 0, 
                 Material = 'Si')
             S.AddLayer(
-                Name = 'Alumina_lower', 
-                Thickness = cfg.h_alumina/1000, 
-                Material = 'Al2O3')       
+                Name = 'mask_lower', 
+                Thickness = cfg.h_mask/1000, 
+                Material = 'mask')       
             S.AddLayer(
                 Name = 'Atom', 
                 Thickness = h, 
                 Material = 'Vacuum')
-            S.AddLayer(
-                Name = 'Alumina_upper', 
-                Thickness = cfg.h_alumina/1000, 
-                Material = 'Al2O3')   
+            if (cfg.top_mask==True):
+                S.AddLayer(
+                    Name = 'mask_upper', 
+                    Thickness = cfg.h_mask/1000, 
+                    Material = 'mask')   
             S.AddLayer(
                 Name = 'AirAbove', 
                 Thickness = 0, 
