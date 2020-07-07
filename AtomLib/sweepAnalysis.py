@@ -70,7 +70,7 @@ def PY_S4_Analysis(cfg):
     T=np.array(infT)
     print(T.shape)
     plt.figure(1)
-    plt.imshow(np.abs(T),vmin=0.00000,vmax=0.4,cmap='jet',extent=[100,450,1500,500],aspect='auto')
+    plt.imshow(np.log(np.abs(T)),cmap='jet',extent=[100,450,1500,500],aspect='auto')
     plt.colorbar()  
     plt.savefig(cfg.outputPath+'SweepT.png')
  
