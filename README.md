@@ -6,7 +6,7 @@ This project is used for the sweep of cylinder-shaped meta-atom library. But it 
 ### To run the sweep
 $ python3 atom_sweep.py -i <input_parameters.yml>
 ### To analysis the data
-$ python3 sweepAnalysis.py -i <output_E_and_T_from_the_sweep.yml>
+$ python3 sweepAnalysis.py -i <input_parameters.yml>
 ***
 ## atom_sweep.py input parameters
 The input argument or the structure can be easily modified. Here is an example of mine.
