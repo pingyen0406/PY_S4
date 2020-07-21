@@ -1,4 +1,4 @@
-# Sweep of period of 562nm meta-atom library with SiO2 hardmask
+# Sweep of period of 562nm meta-atom library with 80nm SiO2 hardmask
 # Unit in "nm"
 PY_S4:
         period: 562
