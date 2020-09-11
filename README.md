@@ -1,6 +1,8 @@
 # PY_S4
 The project is based on https://github.com/victorliu/S4. The S4 package with python API should be installed first.
 This project is used for the sweep of cylinder-shaped meta-atom library. But it can be modified to other shape.
+The schematic of the simulation model:
+![](RCWA_model.png)
 ***
 ## Basic usage
 ### Example
