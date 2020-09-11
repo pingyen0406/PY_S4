@@ -19,7 +19,7 @@ class PY_S4_Config:
              'wavelength': (int,True),
              'h_mask': (int,True),
              'epsilon': (float,True),
-	     'top_mask': (bool,True),
+	         'top_mask': (bool,True),
              'angle': (float,True),
              'outputPath': (str,True),
             'outputName':(str,True)}
@@ -66,12 +66,9 @@ def PY_S4(cfg):
             S=S4.New(Lattice=((cfg.period/1000,0),(0,cfg.period/1000)), NumBasis=100)
             
             # Material definition
-            S.SetMaterial(Name = 'Si', Epsilon = 12.0647)
-            S.SetMaterial(Name = 'a-Si', Epsilon = 12.1891)
-            # 12.0647 from Lumerical
-            # Use 11.7649 for repeating Faraon's paper, 
-            # Use 12.1891 from my ellipsometer 20191204 
-            S.SetMaterial(Name = 'Fusedsilica', Epsilon = cfg.epsilon)
+            S.SetMaterial(Name = 'Si', Epsilon = 12.0647) # From Lumerical
+            S.SetMaterial(Name = 'a-Si', Epsilon = 12.1891)# From my ellipsometer 20191204             
+            S.SetMaterial(Name = 'Fusedsilica', Epsilon = 2.0851)
             S.SetMaterial(Name = 'Vacuum', Epsilon = 1)
             # epsilon of SiO2 -> 2.09771, Al2O3-> 3.04852
             # I don't chane the name for simplicity
@@ -101,10 +98,15 @@ def PY_S4(cfg):
                 Material = 'Vacuum')
             
         # Incident Wave Definition
-        # Slab mode effective index=2.862458 for 500nm Al2O3, theta=37.586
-        # Slab mode effective index=2.857184 for 100nm Al2O3, theta=37.67
-        # Slab mode effective index=2.851360 for 60nm Al2O3, theta=37.76
-        # Slab mode effective index=2.846334 for 40nm Al2O3, theta=37.83
+            # Note about the "IncidentAngles": 
+            # (pair of numbers) Of the form (phi,theta) with angles in degrees. 
+            # phi and theta give the spherical coordinate angles of the planewave k-vector. 
+            # For zero angles, the k-vector is assumed to be (0, 0, kz), 
+            # while the electric field is assumed to be (E0, 0, 0), 
+            # and the magnetic field is in (0, H0, 0). 
+            # The angle phi specifies first the angle by which the E,H,k frame should be rotated (CW) about the y-axis, 
+            # and the angle theta specifies next the angle by which the E,H,k frame should be rotated (CCW) about the z-axis. 
+            # Note the different directions of rotations for each angle.
             S.SetExcitationPlanewave(
                 IncidenceAngles=(cfg.angle,0),# (polar in [0,180],azimuthal in [0,360)
                 sAmplitude=1,
