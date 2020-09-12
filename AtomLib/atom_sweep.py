@@ -29,13 +29,13 @@ class PY_S4_Config:
         infile=open(inFileName,'r')
         ymlcfg=yaml.load(infile)
         infile.close()
-        eccfg=ymlcfg.get(self.sectionName,None)
-        if eccfg is None: raise Exception('Missing PY_S4 section in cfg file')
+        pycfg=ymlcfg.get(self.sectionName,None)
+        if pycfg is None: raise Exception('Missing PY_S4 section in cfg file')
          
         #iterate over options
         for opt in self.options:
-            if opt in eccfg:
-                optval=eccfg[opt]
+            if opt in pycfg:
+                optval=pycfg[opt]
  
                 #verify parameter type
                 if type(optval) != self.options[opt][0]:

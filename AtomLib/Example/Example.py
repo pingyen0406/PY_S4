@@ -8,7 +8,7 @@ import time
 
 # Define some current path
 script_dir = os.path.abspath(os.path.dirname(__file__))
-fol_path = os.path.join(script_dir,"40nmAl2O3sweepTE")
+fol_path = script_dir
 outf1 = open(os.path.join(fol_path,'Lib562sweep_T.txt'),'w')
 outf2 = open(os.path.join(fol_path,'Lib562sweep_E.txt'),'w')
 
@@ -18,7 +18,7 @@ h_mask = 0.08 # height of the hardmask
 wavelength=1.55  # operating wavelength 
 t_start = time.time() # timer start
 # H_atom sweep loop
-for h in range (500,1500,10):
+for h in range (500,501,1):
     print('H_atom = '+str(h)+'nm')
     tmid1 = time.time() # timer of each height loop
     for hole_radius_nm in range(30, 250, 2):
