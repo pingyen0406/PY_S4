@@ -1,16 +1,15 @@
-# Same simulation model with the Example.py, but it is run in command line.
 # Sweep of period of 562nm meta-atom library with SiO2 hardmask
 # Unit in "nm"
 PY_S4:
         period: 562
         radii_range: [50,250,2]
-        height_range: [1000,1500,1]
+        height_range: [500,1500,10]
         wavelength: 1550
         h_mask: 80
         epsilon: 2.08514 # Palik
         top_mask: True
         angle: 54.9467 # effective index of 80nmSiO2 slab on silicon waveguide
-        outputPath: "Example/" 
-        outputName: "Lib562sweep" # Default output name = outputName_E.txt and outputName_T.txt
+        outputPath: "/home/pingyen/GoogleDrive/PY_S4/AtomLib/Lib562/80nmSiO2/newRun/2ndRun/"
+        outputName: "Lib562sweep"
 
 
