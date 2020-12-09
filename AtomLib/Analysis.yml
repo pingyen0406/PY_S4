@@ -1,9 +1,10 @@
 # Analysis of meta-atom library
 # Unit in "nm"
 PY_S4_Analysis:
-        radii_range: [50,350,2]
-        height_range: [500,1500,10]
-        inputFile_T: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib800/80nmSiO2/1stRun/Lib800sweep_T.txt"
-        inputFile_E: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib800/80nmSiO2/1stRun/Lib800sweep_E.txt"
-        outputPath: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib800/80nmSiO2/1stRun/"
-        outputName: "sweep800"
+        radii_range: [50,250,2]
+        height_range: [1200,1210,10]
+        inputFile_T: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newNeff/Lib562sweep_T.txt"
+        inputFile_E: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newNeff/Lib562sweep_E.txt"
+        outputPath: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newNeff/"
+        outputName: "sweep562"
+        Data: "1D"
