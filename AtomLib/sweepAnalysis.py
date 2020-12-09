@@ -53,11 +53,20 @@ class PY_S4_Analysis_Config:
     def __str__(self):
         return str(yaml.dump(self.__dict__,default_flow_style=False))
 # Unwrap electric field data
-def unwrapPhase(Edata):
+def EtoPhase(Edata):
     Er = np.real(Edata)
     Ei = np.imag(Edata)
     theta = (np.arctan2(Ei,Er))
     return(theta)
+def normalizePhase(phase):
+    phase = np.unwrap(phase)/2/np.pi
+    for i in range(len(phase.shape)):
+        if i==0:
+            pass
+        else:
+            phase[i]-=phase[0]
+    phase[0]=0
+    return phase
     
 def PY_S4_Analysis(cfg):
     infT = np.loadtxt(cfg.inputFile_T,dtype='complex_')
@@ -91,7 +100,7 @@ def PY_S4_Analysis(cfg):
         count=0
         print(np.shape(e))
         for line in e:
-            phase[count]=unwrapPhase(line)
+            phase[count]=EtoPhase(line)
             count+=1
         plt.figure(2)
         plt.imshow(phase,cmap='jet',
@@ -111,9 +120,8 @@ def PY_S4_Analysis(cfg):
         t=np.array(infT)
         print(t.shape)
         plt.figure(1)
-        plt.plot(radii_list,np.log10(np.abs(t)))
+        plt.plot(radii_list,(np.abs(t)))
         plt.xlabel("radius(nm)",fontsize=25)
-        plt.xticks([50,100,150,200,250],fontsize=20)
         plt.ylabel("T",fontsize=25)
         plt.savefig(cfg.outputPath+'sweept.png',bbox_inches='tight')
  
@@ -123,11 +131,12 @@ def PY_S4_Analysis(cfg):
         count=0
         print(np.shape(e))
         for line in e:
-            phase[count]=unwrapPhase(line)
+            phase[count]=EtoPhase(line)
             count+=1
+        phase = np.unwrap(phase)/2/np.pi
+        #phase = normalizePhase(phase)
         plt.figure(2)
         plt.plot(radii_list,phase)
-        plt.xticks([50,100,150,200,250],fontsize=20)
         plt.xlabel("radius(nm)",fontsize=25)
         plt.title("phase",fontsize=25)  
         plt.savefig(cfg.outputPath+'sweepphase.png',bbox_inches='tight')

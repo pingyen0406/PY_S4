@@ -1,9 +1,10 @@
 # Analysis of meta-atom library
 # Unit in "nm"
 PY_S4_Analysis:
-        radii_range: [50,250,2]
-        height_range: [500,1500,10]
-        inputFile_T: "Example/Lib562sweep_T.txt"
-        inputFile_E: "Example/Lib562sweep_E.txt"
+        radii_range: [100,275,5]
+        height_range: [940,950,10]
+        inputFile_T: "Example/Example_T.txt"
+        inputFile_E: "Example/Example_E.txt"
         outputPath: "Example/"
-        outputName: "sweep562" # Default output name: sweep562_T.txt and sweep562_Phase.txt
+        outputName: "example" #Default output name: sweep562_T.txt and sweep562_Phase.txt
+        Data: "1D"
