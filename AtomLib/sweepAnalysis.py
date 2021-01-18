@@ -59,12 +59,14 @@ def EtoPhase(Edata):
     theta = (np.arctan2(Ei,Er))
     return(theta)
 def normalizePhase(phase):
-    phase = np.unwrap(phase)/2/np.pi
-    for i in range(len(phase.shape)):
+    phase = np.unwrap(phase)
+    for i in range(len(phase)):
         if i==0:
             pass
         else:
             phase[i]-=phase[0]
+            while phase[i]<0:
+                phase[i]+=1
     phase[0]=0
     return phase
     
@@ -128,13 +130,15 @@ def PY_S4_Analysis(cfg):
         # plotting phase data
         e=np.array(infE)
         phase=np.zeros(shape=e.shape)
+        
         count=0
         print(np.shape(e))
         for line in e:
             phase[count]=EtoPhase(line)
             count+=1
-        phase = np.unwrap(phase)/2/np.pi
-        #phase = normalizePhase(phase)
+        phase = normalizePhase(phase)/2/np.pi
+        #phase = np.unwrap(phase*2*np.pi)
+
         plt.figure(2)
         plt.plot(radii_list,phase)
         plt.xlabel("radius(nm)",fontsize=25)

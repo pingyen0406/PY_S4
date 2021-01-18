@@ -9,7 +9,7 @@ PY_S4:
         epsilon: 2.08514 # Palik
         top_mask: True
         angle: 54.9674 # effective index of 80nmSiO2 slab on silicon waveguide
-        outputPath: "/home/pingyen/GoogleDrive/PY_S4/AtomLib/Lib562/80nmSiO2/newRun/"
+        outputPath: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newRun/"
         outputName: "Lib562sweep"
 
 

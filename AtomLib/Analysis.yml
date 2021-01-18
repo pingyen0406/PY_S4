@@ -2,9 +2,9 @@
 # Unit in "nm"
 PY_S4_Analysis:
         radii_range: [50,250,2]
-        height_range: [500,1500,10]
-        inputFile_T: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/100nmSiO2/Lib562sweep_T.txt"
-        inputFile_E: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/100nmSiO2/Lib562sweep_E.txt"
-        outputPath: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/100nmSiO2/"
-        outputName: "sweep562"
-        Data: "2D"
+        height_range: [1200,1210,10]
+        inputFile_T: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newNeff/Lib562sweep2_T.txt"
+        inputFile_E: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newNeff/Lib562sweep2_E.txt"
+        outputPath: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newNeff/"
+        outputName: "sweep562_2"
+        Data: "1D"
