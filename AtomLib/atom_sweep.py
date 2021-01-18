@@ -138,12 +138,8 @@ def PY_S4(cfg):
             x = np.abs(tmp)
             s = np.argmax(x)
             print(forw_A[s])
-            forw_A = np.delete(forw_A,s)
-            x = np.delete(x,s)
-            s2 = np.argmax(x)
-            print(forw_A[s2])
             outfT.write(str(totalT)+' ')
-            outfE.write(str(forw_A[s2])+' ')
+            outfE.write(str(forw_A[s])+' ')
             
             #print(s,x[s])
             #print(totalT,forw_A[s])
