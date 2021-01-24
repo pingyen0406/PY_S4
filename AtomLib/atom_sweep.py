@@ -3,6 +3,7 @@
 import S4
 import numpy as np
 import time
+import math
 import optparse
 import yaml
 import sys
@@ -137,7 +138,7 @@ def PY_S4(cfg):
             
             x = np.abs(tmp)
             s = np.argmax(x)
-            print(forw_A[s])
+            #print(forw_A[s])
             outfT.write(str(totalT)+' ')
             outfE.write(str(forw_A[s])+' ')
             
