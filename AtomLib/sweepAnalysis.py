@@ -92,7 +92,7 @@ def PY_S4_Analysis(cfg):
         plt.xlabel("radius(nm)",fontsize=25)
         plt.xticks([50,100,150,200,250],fontsize=20)
         plt.ylabel("height(nm)",fontsize=25)
-        plt.yticks([500,750,1000,1250,1500],fontsize=20)
+        #plt.yticks([500,750,1000,1250,1500],fontsize=20)
         plt.title("top emission intensity",fontsize=25)  
         plt.savefig(cfg.outputPath+'sweept.png',bbox_inches='tight')
  
@@ -113,7 +113,7 @@ def PY_S4_Analysis(cfg):
         c2.ax.tick_params(labelsize=20) 
         plt.xticks([50,100,150,200,250],fontsize=20)
         plt.xlabel("radius(nm)",fontsize=25)
-        plt.yticks([500,750,1000,1250,1500],fontsize=20)
+        #plt.yticks([500,750,1000,1250,1500],fontsize=20)
         plt.ylabel("height(nm)",fontsize=25)
         plt.title("phase",fontsize=25)  
         plt.savefig(cfg.outputPath+'sweepphase.png',bbox_inches='tight')
