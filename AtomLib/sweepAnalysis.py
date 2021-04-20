@@ -73,9 +73,12 @@ def normalizePhase(phase):
 def PY_S4_Analysis(cfg):
     infT = np.loadtxt(cfg.inputFile_T,dtype='complex_')
     infE = np.loadtxt(cfg.inputFile_E,dtype='complex_')
-    
-    N_height = (cfg.height_range[1]-cfg.height_range[0])/cfg.height_range[2] 
-    N_radii =  (cfg.radii_range[1]-cfg.radii_range[0])/cfg.radii_range[2]
+    r_max = cfg.radii_range[1]
+    r_min = cfg.radii_range[0]
+    h_max = cfg.height_range[1]
+    h_min = cfg.height_range[0]
+    N_height = (h_max-h_min)/cfg.height_range[2] 
+    N_radii =  (r_max-r_min)/cfg.radii_range[2]
     radii_list = np.transpose(np.array([range(cfg.radii_range[0],cfg.radii_range[1],cfg.radii_range[2])]))
     print(radii_list.shape) 
     if cfg.Data=="2D":
@@ -84,13 +87,12 @@ def PY_S4_Analysis(cfg):
         t=np.array(infT)
         print(t.shape)
         plt.figure(1)
-        plt.imshow(np.log10(np.abs(t)),cmap='jet',
-        extent=[cfg.radii_range[0],cfg.radii_range[1],cfg.height_range[1],cfg.height_range[0]],aspect='auto')
-        c1 = plt.colorbar(ticks=[-1, -2, -3,-4,-5])
+        plt.imshow(np.abs(t),cmap='jet',extent=[r_min,r_max,h_max,h_min],aspect='auto')
+        c1 = plt.colorbar()
         c1.set_label("log scale(a.u.)",fontsize=20)
         c1.ax.tick_params(labelsize=20) 
         plt.xlabel("radius(nm)",fontsize=25)
-        plt.xticks([50,100,150,200,250],fontsize=20)
+        #plt.xticks([r_min,0.5*(r_min+r_max),r_max],fontsize=20)
         plt.ylabel("height(nm)",fontsize=25)
         #plt.yticks([500,750,1000,1250,1500],fontsize=20)
         plt.title("top emission intensity",fontsize=25)  
@@ -105,13 +107,12 @@ def PY_S4_Analysis(cfg):
             phase[count]=EtoPhase(line)
             count+=1
         plt.figure(2)
-        plt.imshow(phase,cmap='jet',
-        extent=[cfg.radii_range[0],cfg.radii_range[1],cfg.height_range[1],cfg.height_range[0]],aspect='auto')
-        c2 = plt.colorbar(ticks=[-3.14, 0, 3.14])
+        plt.imshow(phase/np.pi,cmap='jet',extent=[r_min,r_max,h_max,h_min],aspect='auto')
+        c2 = plt.colorbar()
         c2.set_label("rad",fontsize=20)
-        c2.ax.set_yticklabels(['-\u03c0',0,'\u03c0']) 
+        #c2.ax.set_yticklabels(['-\u03c0',0,'\u03c0']) 
         c2.ax.tick_params(labelsize=20) 
-        plt.xticks([50,100,150,200,250],fontsize=20)
+        #plt.xticks([r_min,0.5*(r_min+r_max),r_max],fontsize=20)
         plt.xlabel("radius(nm)",fontsize=25)
         #plt.yticks([500,750,1000,1250,1500],fontsize=20)
         plt.ylabel("height(nm)",fontsize=25)
