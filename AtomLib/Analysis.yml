@@ -1,10 +1,10 @@
 # Analysis of meta-atom library
 # Unit in "nm"
 PY_S4_Analysis:
-        radii_range: [100,700,25]
-        height_range: [100,200,25]
-        inputFile_T: "/home/pingyen/Simulation/PY_S4/AtomLib/Antenna/Antenna_T.txt"
-        inputFile_E: "/home/pingyen/Simulation/PY_S4/AtomLib/Antenna/Antenna_E.txt"
-        outputPath: "/home/pingyen/Simulation/PY_S4/AtomLib/Antenna/"
-        outputName: "Antanna_ana"
+        radii_range: [50,250,2]
+        height_range: [400,1650,50]
+        inputFile_T: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newNeff/Lib562sweep2_T.txt"
+        inputFile_E: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newNeff/Lib562sweep2_E.txt"
+        outputPath: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/newNeff/"
+        outputName: "Sweep562"
         Data: "2D"
