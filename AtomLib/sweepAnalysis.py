@@ -117,7 +117,7 @@ def PY_S4_Analysis(cfg):
         #plt.yticks([500,750,1000,1250,1500],fontsize=20)
         plt.ylabel("height(nm)",fontsize=25)
         plt.title("phase",fontsize=25)  
-        plt.savefig(cfg.outputPath+'sweepphase.png',bbox_inches='tight')
+        plt.savefig(cfg.outputPath+cfg.outputName+'Phase.png',bbox_inches='tight')
     else:
         # plotting transmission data
         t=np.array(infT)
@@ -126,7 +126,7 @@ def PY_S4_Analysis(cfg):
         plt.plot(radii_list,(np.abs(t)))
         plt.xlabel("radius(nm)",fontsize=25)
         plt.ylabel("T",fontsize=25)
-        plt.savefig(cfg.outputPath+'sweept.png',bbox_inches='tight')
+        plt.savefig(cfg.outputPath+cfg.outputName+'T.png',bbox_inches='tight')
  
         # plotting phase data
         e=np.array(infE)
