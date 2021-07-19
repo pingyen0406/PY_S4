@@ -18,9 +18,6 @@ S.SetMaterial(Name = 'Vacuum', Epsilon = 1)
 S.SetMaterial(Name = 'glass', Epsilon=2.08514)# SiO2 
 
 
-
-
-
 # Layer definition(from bottom to top)
 S.AddLayer(
     Name = 'Air', 
@@ -61,8 +58,8 @@ for i in range(2):
         else:    
             S.SetExcitationPlanewave(
                 IncidenceAngles=(theta_i_deg,phi),
-                sAmplitude=0,
-                pAmplitude=1,
+                sAmplitude=1,
+                pAmplitude=0,
                 Order=0)       
         # Calculation of Spectrum
         freq = 1/wavelength
