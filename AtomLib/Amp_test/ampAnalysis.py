@@ -21,4 +21,7 @@ def normalizePhase(phase):
     phase[0]=0
     return phase
 
-
+inf1_name = ~/Simulation/PY_S4/AtomLib/Lib562
+inf2_name = 
+infT = np.loadtxt(cfg.inputFile_T,dtype='complex_')
+infE = np.loadtxt(cfg.inputFile_E,dtype='complex_')

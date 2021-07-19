@@ -28,14 +28,17 @@ S.AddLayer(
     Thickness = 0, 
     Material = 'glass')
 
-input_wave = "s"
 n_glass = math.sqrt(2.08514)
-theta_i_deg = -1
-phi =0 
-Tp_ana = []
-Tp=[]
-Ts_ana=[]
-Ts=[]
+theta_i_deg = 0
+phi =90 
+Tp_ana = np.zeros(91,dtype=complex)
+Tp=np.zeros(91,dtype=complex)
+Rp=np.zeros(91,dtype=complex)
+Rp_ana=np.zeros(91,dtype=complex)
+Ts_ana=np.zeros(91,dtype=complex)
+Ts=np.zeros(91,dtype=complex)
+Rs=np.zeros(91,dtype=complex)
+Rs_ana=np.zeros(91,dtype=complex)
 for i in range(2):
     if i==0:
         input_wave="s"
@@ -84,22 +87,43 @@ for i in range(2):
     
             T_coe_s = (2*math.cos(theta_i)/(math.cos(theta_i)+n_glass*math.cos(theta_t)))
             T_ana_s = n_glass*math.cos(theta_t)/math.cos(theta_i)*T_coe_s**2
-            Ts.append(Trans)
-            Ts_ana.append(T_ana_s)
+            Ts[j]=Trans
+            Rs[j] = Refl
+            Ts_ana[j] = T_ana_s
+            Rs_ana[j] = 1-Ts_ana[j]
         else:
     
             T_coe_p = (2*math.cos(theta_i)/(n_glass*math.cos(theta_i)+math.cos(theta_t)))
             T_ana_p = n_glass*math.cos(theta_t)/math.cos(theta_i)*T_coe_p**2   
-            Tp.append(Trans)
-            Tp_ana.append(T_ana_p)
-    
+            Tp[j] = Trans
+            Rp[j] = Refl
+            Tp_ana[j] = T_ana_p
+            Rp_ana[j] = 1-Tp_ana[j]
 theta_list = np.linspace(0,90,91)
 plt.figure()
-plt.plot(theta_list,Tp,theta_list,Tp_ana,theta_list,Ts,theta_list,Ts_ana)
+plt.plot(theta_list,Tp,label='Tp-wave')
+plt.plot(theta_list,Tp_ana,'--',label='Tp-wave_ana')
+plt.plot(theta_list,Rp,label='Rp-wave')
+plt.plot(theta_list,Rp_ana,'--',label='Rp-wave_ana')
+plt.legend()
 axes = plt.gca()
 axes.set_xlim([0,90])
 axes.set_ylim([0,1])
-plt.savefig("Test.png")
+plt.savefig("Pwave.png")
+
+plt.figure()
+plt.plot(theta_list,Ts,label='Ts-wave')
+plt.plot(theta_list,Ts_ana,'--',label='Ts-wave_ana')
+plt.plot(theta_list,Rs,label='Rs-wave')
+plt.plot(theta_list,Rs_ana,'--',label='Rs-wave_ana')
+plt.legend()
+axes = plt.gca()
+axes.set_xlim([0,90])
+axes.set_ylim([0,1])
+plt.savefig("Swave.png")
+
+print(Rs)
+print(Rp)
 
 #print("(forw_glass,back_glass,forw_air,back_air)=  ",forw_P1,back_P1,forw_P2,back_P2,'\n')
 #print("Transmittance= ",Trans,'\n')
