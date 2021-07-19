@@ -29,25 +29,22 @@ S.AddLayer(
     Material = 'glass')
 
 n_glass = math.sqrt(2.08514)
-theta_i_deg = 0
-phi =90 
-Tp_ana = np.zeros(91,dtype=complex)
-Tp=np.zeros(91,dtype=complex)
-Rp=np.zeros(91,dtype=complex)
-Rp_ana=np.zeros(91,dtype=complex)
-Ts_ana=np.zeros(91,dtype=complex)
-Ts=np.zeros(91,dtype=complex)
-Rs=np.zeros(91,dtype=complex)
-Rs_ana=np.zeros(91,dtype=complex)
+phi =0 
+Tp_ana = np.zeros(91)
+Tp=np.zeros(91)
+Rp=np.zeros(91)
+Rp_ana=np.zeros(91)
+Ts_ana=np.zeros(91)
+Ts=np.zeros(91)
+Rs=np.zeros(91)
+Rs_ana=np.zeros(91)
 for i in range(2):
     if i==0:
         input_wave="s"
     else:
         input_wave="p"
-    theta_i_deg=-1
     for j in range(91):
-        theta_i_deg+=1
-    
+        theta_i_deg = j    
         print("Current input type: ",input_wave,"-wave","(theta,phi)= ("+str(theta_i_deg)+","+str(phi)+")")
         theta_i = math.radians(theta_i_deg)
         sin_t = math.sin(theta_i)/n_glass
@@ -61,19 +58,19 @@ for i in range(2):
         else:    
             S.SetExcitationPlanewave(
                 IncidenceAngles=(theta_i_deg,phi),
-                sAmplitude=1,
-                pAmplitude=0,
+                sAmplitude=0,
+                pAmplitude=1,
                 Order=0)       
         # Calculation of Spectrum
         freq = 1/wavelength
         S.SetFrequency(freq)
         Glist = S.GetBasisSet()
-        (forw_P1,back_P1) = S.GetPowerFlux(Layer = 'Glass', zOffset = 0)
-        (forw_P2,back_P2) = S.GetPowerFlux(Layer = 'Air', zOffset = 0)
+        (forw_P1,back_P1) = S.GetPowerFlux(Layer = 'Air', zOffset = 0)
+        (forw_P2,back_P2) = S.GetPowerFlux(Layer = 'Glass', zOffset = 0)
         (forw_A,back_A) = S.GetAmplitudes(Layer = 'Glass', zOffset = 0)
         (forw_B,back_B) = S.GetAmplitudes(Layer = 'Air',zOffset=0)
-        Trans = forw_P1/forw_P2 # Transmitance   
-        Refl = back_P2 # Reflectance
+        Trans = forw_P2/forw_P1# Transmitance   
+        Refl = back_P1/forw_P1 # Reflectance
         # Finding out the index of the maximum forw_A 
         tmp=[]
         for ix in range(len(forw_A)):
@@ -87,18 +84,19 @@ for i in range(2):
     
             T_coe_s = (2*math.cos(theta_i)/(math.cos(theta_i)+n_glass*math.cos(theta_t)))
             T_ana_s = n_glass*math.cos(theta_t)/math.cos(theta_i)*T_coe_s**2
-            Ts[j]=Trans
-            Rs[j] = Refl
+            Ts[j]= np.real(Trans)
+            Rs[j] = np.real(Refl)
             Ts_ana[j] = T_ana_s
             Rs_ana[j] = 1-Ts_ana[j]
         else:
     
             T_coe_p = (2*math.cos(theta_i)/(n_glass*math.cos(theta_i)+math.cos(theta_t)))
             T_ana_p = n_glass*math.cos(theta_t)/math.cos(theta_i)*T_coe_p**2   
-            Tp[j] = Trans
-            Rp[j] = Refl
+            Tp[j] = np.real(Trans)
+            Rp[j] = np.real(Refl)
             Tp_ana[j] = T_ana_p
             Rp_ana[j] = 1-Tp_ana[j]
+        
 theta_list = np.linspace(0,90,91)
 plt.figure()
 plt.plot(theta_list,Tp,label='Tp-wave')
@@ -122,8 +120,8 @@ axes.set_xlim([0,90])
 axes.set_ylim([0,1])
 plt.savefig("Swave.png")
 
+print(Ts)
 print(Rs)
-print(Rp)
 
 #print("(forw_glass,back_glass,forw_air,back_air)=  ",forw_P1,back_P1,forw_P2,back_P2,'\n')
 #print("Transmittance= ",Trans,'\n')
