@@ -8,7 +8,7 @@ import time
 import math
 import matplotlib.pyplot as plt
 
-S = S4.New(Lattice=((0,0),(0,0)),NumBasis=100)
+S = S4.New(Lattice=((0,0),(0,0)),NumBasis = 100)
 wavelength=1.55  # operating wavelength 
 # H_atom sweep loop
 # Material definition
@@ -29,7 +29,7 @@ S.AddLayer(
     Material = 'glass')
 
 n_glass = math.sqrt(2.08514)
-phi =0 
+phi =90 
 Tp_ana = np.zeros(91)
 Tp=np.zeros(91)
 Rp=np.zeros(91)
@@ -70,7 +70,7 @@ for i in range(2):
         (forw_A,back_A) = S.GetAmplitudes(Layer = 'Glass', zOffset = 0)
         (forw_B,back_B) = S.GetAmplitudes(Layer = 'Air',zOffset=0)
         Trans = forw_P2/forw_P1# Transmitance   
-        Refl = back_P1/forw_P1 # Reflectance
+        Refl = abs(back_P1/forw_P1) # Reflectance
         # Finding out the index of the maximum forw_A 
         tmp=[]
         for ix in range(len(forw_A)):
