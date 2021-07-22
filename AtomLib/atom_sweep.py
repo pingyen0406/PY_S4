@@ -109,7 +109,7 @@ def PY_S4(cfg):
             # and the angle theta specifies next the angle by which the E,H,k frame should be rotated (CCW) about the z-axis. 
             # Note the different directions of rotations for each angle.
             S.SetExcitationPlanewave(
-                IncidenceAngles=(cfg.angle,90),# (polar in [0,180],azimuthal in [0,360)
+                IncidenceAngles=(cfg.angle,0),# (polar in [0,180],azimuthal in [0,360)
                 sAmplitude=1,
                 pAmplitude=0,
                 Order=0)        

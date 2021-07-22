@@ -2,9 +2,9 @@
 # Unit in "nm"
 PY_S4_Analysis:
         radii_range: [50,250,2]
-        height_range: [500,1500,10]
-        inputFile_T: "Lib562/80nmSiO2/incidentTest/incident30_T.txt"
-        inputFile_E: "Lib562/80nmSiO2/incidentTest/incident30_E.txt"
-        outputPath: "Lib562/80nmSiO2/incidentTest/"
-        outputName: "incident30"
+        height_range: [300,3000,30]
+        inputFile_T: "Lib562/80nmSiO2/modeTest/modeTest0_T.txt"
+        inputFile_E: "Lib562/80nmSiO2/modeTest/modeTest0_E.txt"
+        outputPath: "Lib562/80nmSiO2/modeTest/"
+        outputName: "modeTest0"
         Data: "2D"
