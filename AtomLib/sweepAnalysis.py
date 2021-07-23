@@ -18,6 +18,7 @@ class PY_S4_Analysis_Config:
     sectionName='PY_S4_Analysis'
     options={'height_range': (list,True),
              'radii_range': (list,True),
+             'logScale' : (bool,True),
              'inputFile_T': (str,True),
              'inputFile_E': (str,True),
              'outputPath': (str,True),
@@ -87,7 +88,10 @@ def PY_S4_Analysis(cfg):
         t=np.array(infT)
         print(t.shape)
         plt.figure(1)
-        plt.imshow((np.abs(t)),cmap='jet',extent=[r_min,r_max,h_max,h_min],aspect='auto')
+        if cfg.logScale==True:
+            plt.imshow(np.log10(np.abs(t)),cmap='jet',extent=[r_min,r_max,h_max,h_min],aspect='auto')
+        else:
+            plt.imshow((np.abs(t)),cmap='jet',extent=[r_min,r_max,h_max,h_min],aspect='auto') 
         c1 = plt.colorbar()
         c1.set_label("log scale(a.u.)",fontsize=20)
         c1.ax.tick_params(labelsize=20) 
