@@ -79,7 +79,7 @@ def PY_S4(cfg):
             S.AddLayer(
                 Name = 'SiBelow', 
                 Thickness = 0,
-		Material = 'Si')
+		        Material = 'Si')
             S.AddLayer(
                 Name = 'mask_lower', 
                 Thickness = cfg.h_mask/1000, 

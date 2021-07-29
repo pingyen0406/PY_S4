@@ -1,11 +1,11 @@
 # Analysis of meta-atom library
 # Unit in "nm"
 PY_S4_Analysis:
-        radii_range: [50,250,5]
-        height_range: [300,3000,50]
+        radii_range: [50,250,2]
+        height_range: [500,1500,10]
         logScale: True
-        inputFile_T: "Lib562/80nmSiO2/modeTest/modeTest_T.txt"
-        inputFile_E: "Lib562/80nmSiO2/modeTest/modeTest_E.txt"
-        outputPath: "Lib562/80nmSiO2/modeTest/"
-        outputName: "modeTest"
+        inputFile_T: "Lib562/80nmSiO2/incidentTest/incident20_T.txt"
+        inputFile_E: "Lib562/80nmSiO2/incidentTest/incident20_E.txt"
+        outputPath: "Lib562/80nmSiO2/incidentTest/"
+        outputName: "incidentTest20"
         Data: "2D"
