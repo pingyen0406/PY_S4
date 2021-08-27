@@ -8,8 +8,8 @@ PY_S4:
         h_mask: 80
         epsilon: 2.08514 # Palik
         top_mask: True
-        angle: 0.0 # effective index of 80nmSiO2 slab on silicon waveguide
+        angle: 54.9674 # effective index of 80nmSiO2 slab on silicon waveguide
         outputPath: "/home/pingyen/Simulation/PY_S4/AtomLib/Lib562/80nmSiO2/modeTest/"
-        outputName: "modeTest0" 
+        outputName: "modeTestTIR" 
 
 
