@@ -125,9 +125,19 @@ def PY_S4_Analysis(cfg):
     else:
         # plotting transmission data
         t=np.array(infT)
-        print(t.shape)
+        row_index = int((h_min-500)/10)
+        t = t[row_index,:]
+        phase=EtoPhase(infE[row_index])
+        phase = normalizePhase(phase)/2/np.pi
+
         plt.figure(1)
-        plt.plot(radii_list,(np.abs(t)))
+        if cfg.logScale==True:
+            plt.plot(radii_list,np.log10(np.abs(t)),label='Emission Intensity')
+            plt.plot(radii_list,phase,label='Phase/')
+        else:
+            plt.plot(radii_list,np.abs(t)) 
+            plt.plot(radii_list,phase)
+        
         plt.xlabel("radius(nm)",fontsize=25)
         plt.ylabel("T",fontsize=25)
         plt.savefig(cfg.outputPath+cfg.outputName+'T.png',bbox_inches='tight')
@@ -136,19 +146,12 @@ def PY_S4_Analysis(cfg):
         e=np.array(infE)
         phase=np.zeros(shape=e.shape)
         
-        count=0
-        print(np.shape(e))
-        for line in e:
-            phase[count]=EtoPhase(line)
-            count+=1
-        phase = normalizePhase(phase)/2/np.pi
-        #phase = np.unwrap(phase*2*np.pi)
-
-        plt.figure(2)
-        plt.plot(radii_list,phase)
+       
+        
+        
         plt.xlabel("radius(nm)",fontsize=25)
         plt.title("phase",fontsize=25)  
-        plt.savefig(cfg.outputPath+'sweepphase.png',bbox_inches='tight')
+        plt.savefig(cfg.outputPath+cfg.outputName+'Phase.png',bbox_inches='tight')
  
        
     # Save transmission & phase data

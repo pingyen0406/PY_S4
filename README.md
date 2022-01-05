@@ -37,8 +37,10 @@ Unit in "nm"
 PY_S4_Analysis:
         radii_range: [50,250,2]
         height_range: [500,1500,10]
+        logScale: True # Whether to use log scale in transmission or not
         inputFile_T: "Example/Lib562sweep_T.txt"
         inputFile_E: "Example/Lib562sweep_E.txt"
         outputPath: "Example/"
         outputName: "sweep562" # Default output name: sweep562_T.txt and sweep562_Phase.txt
+        Data: "2D" # 2D or 1D sweep
 ```
