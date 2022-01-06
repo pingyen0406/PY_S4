@@ -11,11 +11,10 @@ h_atom = 1200
 wavelength = 1550
 t_start = time.time() 
 angle = [10*i for i in range(11)]
+outfT = open('angleTest_T90.txt','w')
+outfE = open('angleTest_E90.txt','w') 
 for theta in angle:
-    tmid1 = time.time()
-    outfT = open('thetaTest_'+str(angle)+'_T.txt','w')
-    outfE = open('thetaTest_'+str(angle)+'_E.txt','w')      
-    
+    tmid1 = time.time()       
     for hole_radius in range(50,252,2):        
         hole_radius = hole_radius/1000
         S=S4.New(Lattice=((period/1000,0),(0,period/1000)), NumBasis=100)
@@ -27,7 +26,7 @@ for theta in angle:
         S.SetMaterial(Name = 'Vacuum', Epsilon = 1)
         # epsilon of SiO2 -> 2.09771, Al2O3-> 3.04852
         # I don't chane the name for simplicity
-        S.SetMaterial(Name = 'mask', Epsilon=cfg.epsilon) 
+        S.SetMaterial(Name = 'mask', Epsilon=2.08514) 
                             
         # Layer definition
         S.AddLayer(
@@ -62,7 +61,7 @@ for theta in angle:
         # and the angle theta specifies next the angle by which the E,H,k frame should be rotated (CCW) about the z-axis. 
         # Note the different directions of rotations for each angle.
         S.SetExcitationPlanewave(
-            IncidenceAngles=(angle,0),# (polar in [0,180],azimuthal in [0,360)
+            IncidenceAngles=(theta,90),# (polar in [0,180],azimuthal in [0,360)
             sAmplitude=1,
             pAmplitude=0,
             Order=0)        
