@@ -10,7 +10,7 @@ h_mask = 80
 h_atom = 1200
 wavelength = 1550
 t_start = time.time() 
-angle = [10*i for i in range(11)]
+angle = [10*i for i in range(10)]
 outfT = open('angleTest_T90.txt','w')
 outfE = open('angleTest_E90.txt','w') 
 for theta in angle:

@@ -18,14 +18,14 @@ def normalizePhase(phase):
             phase[i]-=phase[0]
             while phase[i]<0:
                 phase[i]+=1
-            while phase[i]>1:
-                phase[i]-=1
+            # while phase[i]>1:
+            #     phase[i]-=1
     phase[0]=0
     return phase
 
-inf_T = np.loadtxt('angleTest_T.txt',dtype='complex_')
-inf_E = np.loadtxt('angleTest_E.txt',dtype='complex_')
-RList = np.array([i for i in range(50,252,2)])
+inf_T = np.loadtxt('angleTest_faraon_T0.txt',dtype='complex_')
+inf_E = np.loadtxt('angleTest_faraon_E0.txt',dtype='complex_')
+RList = np.array([i for i in range(100,275,1)])
 
 plt.figure(1)
 count=0
@@ -36,7 +36,7 @@ for line in inf_E:
 plt.xlabel('radius(nm)')
 plt.legend()
 plt.title('Phase shift of different radius')
-#plt.savefig('angleTest90_phase.svg',format='svg',dpi=1200)
+plt.savefig('angleTest0_faraon_phase.svg',format='svg',dpi=1200)
 
 
 plt.figure(2)
@@ -48,5 +48,5 @@ for line in inf_T:
 plt.xlabel('radius(nm)')
 plt.legend()
 plt.title('Transmission of different radius')
-plt.savefig('angleTest0_T.svg',format='svg',dpi=1200)
+plt.savefig('angleTest0_faraon_T.svg',format='svg',dpi=1200)
 plt.show()

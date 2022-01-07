@@ -11,13 +11,13 @@ h_atom = 940
 wavelength = 1550
 t_start = time.time() 
 angle = [10*i for i in range(10)]
-outfT = open('angleTest_faraon_T0.txt','w')
-outfE = open('angleTest_faraon_E0.txt','w') 
+outfT = open('angleTest_faraon_T90.txt','w')
+outfE = open('angleTest_faraon_E90.txt','w') 
 for theta in angle:
     tmid1 = time.time()       
     for hole_radius in range(100,275,1):        
         hole_radius = hole_radius/1000
-        S=S4.New(Lattice=((period/1000,0),(0,period/1000)), NumBasis=100)
+        S=S4.New(Lattice=((period/1000,0),(period/1000/2,math.sqrt(3)*period/1000/2)), NumBasis=100)
         
         # Material definition
         S.SetMaterial(Name = 'Si', Epsilon = 12.0647) # From Lumerical
@@ -50,7 +50,7 @@ for theta in angle:
         # and the angle theta specifies next the angle by which the E,H,k frame should be rotated (CCW) about the z-axis. 
         # Note the different directions of rotations for each angle.
         S.SetExcitationPlanewave(
-            IncidenceAngles=(theta,0),# (polar in [0,180],azimuthal in [0,360)
+            IncidenceAngles=(theta,90),# (polar in [0,180],azimuthal in [0,360)
             sAmplitude=1,
             pAmplitude=0,
             Order=0)        
@@ -67,7 +67,7 @@ for theta in angle:
         # Calculation
         Glist = S.GetBasisSet()
         (forw_P1,back_P1) = S.GetPowerFlux(Layer = 'AirAbove', zOffset = 0)
-        (forw_P2,back_P2) = S.GetPowerFlux(Layer = 'SiBelow', zOffset = 0)
+        (forw_P2,back_P2) = S.GetPowerFlux(Layer = 'substrate', zOffset = 0)
         (forw_A,back_A) = S.GetAmplitudes(Layer = 'AirAbove', zOffset = 0)
         totalT = forw_P1/forw_P2
             
