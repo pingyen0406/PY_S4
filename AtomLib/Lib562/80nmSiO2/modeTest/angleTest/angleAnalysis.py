@@ -16,8 +16,8 @@ def normalizePhase(phase):
             pass
         else:
             phase[i]-=phase[0]
-            while phase[i]<0:
-                phase[i]+=1
+            # while phase[i]<0:
+            #     phase[i]+=1
             # while phase[i]>1:
             #     phase[i]-=1
     phase[0]=0

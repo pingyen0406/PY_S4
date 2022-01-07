@@ -11,8 +11,8 @@ h_atom = 940
 wavelength = 1550
 t_start = time.time() 
 angle = [10*i for i in range(10)]
-outfT = open('angleTest_faraon_T90.txt','w')
-outfE = open('angleTest_faraon_E90.txt','w') 
+outfT = open('angleTest_faraon_T90_P.txt','w')
+outfE = open('angleTest_faraon_E90_P.txt','w') 
 for theta in angle:
     tmid1 = time.time()       
     for hole_radius in range(100,275,1):        
@@ -51,8 +51,8 @@ for theta in angle:
         # Note the different directions of rotations for each angle.
         S.SetExcitationPlanewave(
             IncidenceAngles=(theta,90),# (polar in [0,180],azimuthal in [0,360)
-            sAmplitude=1,
-            pAmplitude=0,
+            sAmplitude=0,
+            pAmplitude=1,
             Order=0)        
     # Calculation of Spectrum
         freq = 1/wavelength*1000
