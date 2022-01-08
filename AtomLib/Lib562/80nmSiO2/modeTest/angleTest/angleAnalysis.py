@@ -1,3 +1,4 @@
+from locale import normalize
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.signal
@@ -16,37 +17,55 @@ def normalizePhase(phase):
             pass
         else:
             phase[i]-=phase[0]
-            # while phase[i]<0:
-            #     phase[i]+=1
-            # while phase[i]>1:
-            #     phase[i]-=1
+            while phase[i]<0:
+                phase[i]+=1
+            while phase[i]>1:
+                phase[i]-=1
     phase[0]=0
     return phase
 
-inf_T = np.loadtxt('angleTest_faraon_T0.txt',dtype='complex_')
-inf_E = np.loadtxt('angleTest_faraon_E0.txt',dtype='complex_')
+# inf_T = np.loadtxt('angleTest_faraon_T0.txt',dtype='complex_')
+# inf_E = np.loadtxt('angleTest_faraon_E0.txt',dtype='complex_')
 RList = np.array([i for i in range(100,275,1)])
 
+
+infE1 = np.loadtxt('angleTest_faraon_E0_P.txt',dtype='complex_')
+infE2 = np.loadtxt('angleTest_faraon_E90_P.txt',dtype='complex_')
+
+infE1 = infE1[0,:]
+infE2 = infE2[0,:]
+
+p1 = normalizePhase(EtoPhase(infE1))
+p2 = normalizePhase(EtoPhase(infE2))
 plt.figure(1)
-count=0
-for line in inf_E:
-    tmpPhase = normalizePhase(EtoPhase(line))
-    plt.plot(RList,tmpPhase,linewidth=2,label=str(count))
-    count+=10
-plt.xlabel('radius(nm)')
-plt.legend()
-plt.title('Phase shift of different radius')
-plt.savefig('angleTest0_faraon_phase.svg',format='svg',dpi=1200)
-
-
-plt.figure(2)
-count=0
-for line in inf_T:
-    tmpT = np.abs(line)
-    plt.plot(RList,np.log10(tmpT),linewidth=2,label=str(count))
-    count+=10
-plt.xlabel('radius(nm)')
-plt.legend()
-plt.title('Transmission of different radius')
-plt.savefig('angleTest0_faraon_T.svg',format='svg',dpi=1200)
+plt.plot(RList,p1)
+plt.plot(RList,p2)
 plt.show()
+
+
+
+
+
+# plt.figure(1)
+# count=0
+# for line in inf_E:
+#     tmpPhase = normalizePhase(EtoPhase(line))
+#     plt.plot(RList,tmpPhase,linewidth=2,label=str(count))
+#     count+=10
+# plt.xlabel('radius(nm)')
+# plt.legend()
+# plt.title('Phase shift of different radius')
+# plt.savefig('angleTest0_faraon_phase.svg',format='svg',dpi=1200)
+
+
+# plt.figure(2)
+# count=0
+# for line in inf_T:
+#     tmpT = np.abs(line)
+#     plt.plot(RList,np.log10(tmpT),linewidth=2,label=str(count))
+#     count+=10
+# plt.xlabel('radius(nm)')
+# plt.legend()
+# plt.title('Transmission of different radius')
+# plt.savefig('angleTest0_faraon_T.svg',format='svg',dpi=1200)
+# plt.show()
