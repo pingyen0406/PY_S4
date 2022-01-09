@@ -54,13 +54,18 @@ cbar.ax.tick_params(labelsize=16,length=5,width=2)
 #plt.show()
 #plt.savefig('0_mode_sweep.svg',format='svg',dpi=1200)
 
+# Import eigenMode Neff from MODE Solution and compare
+inf_Neff = np.loadtxt('eigenMode_sweep.txt',skiprows=1)
+eigenRList = np.array([50+3*i for i in range(51)])
+
 # Plot the radius v.s. Neff
 plt.figure()
 plt.plot(RList,neff_0,linewidth=2,label='normal')
 plt.plot(RList,neff_TIR,linewidth=2,label='TIR')
+plt.plot(eigenRList,inf_Neff,linewidth=2,label='MODE solution')
 plt.xlabel('radius(nm)')
 plt.legend()
 plt.title('Neff of different radius')
-#plt.savefig('0_mode.svg',format='svg',dpi=1200)
+plt.savefig('Neff_compare.svg',format='svg',dpi=1200)
 plt.show()
 
