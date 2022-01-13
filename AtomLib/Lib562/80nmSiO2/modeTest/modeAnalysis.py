@@ -56,16 +56,61 @@ cbar.ax.tick_params(labelsize=16,length=5,width=2)
 
 # Import eigenMode Neff from MODE Solution and compare
 inf_Neff = np.loadtxt('eigenMode_sweep.txt',skiprows=1)
-eigenRList = np.array([50+3*i for i in range(51)])
+eigenRList = np.array([50+2*i for i in range(76)])
 
-# Plot the radius v.s. Neff
-plt.figure()
-plt.plot(RList,neff_0,linewidth=2,label='normal')
-plt.plot(RList,neff_TIR,linewidth=2,label='TIR')
-plt.plot(eigenRList,inf_Neff,linewidth=2,label='MODE solution')
-plt.xlabel('radius(nm)')
+RList = RList[25:72]
+neff_TIR = neff_TIR[25:72]
+inf_Neff = inf_Neff[25:72]
+eigenRList = eigenRList[25:72]
+
+Phase_TIR = []
+Phase_eigen = []
+
+for i in range(len(neff_TIR)):
+    if i == 0:
+        pass     
+    else:
+        neff_TIR[i] -= neff_TIR[0]
+
+neff_TIR[0]=0
+neff_Phase = np.array(neff_TIR)*1.2/1.55
+
+for i in range(len(inf_Neff)):
+    if i ==0:
+        pass
+    else:
+        inf_Neff[i] -= inf_Neff[0]
+        
+inf_Neff[0] = 0
+inf_Phase = np.array(inf_Neff)*1.2/1.55
+
+inf_lib = np.loadtxt('TIR_library.txt')
+lib_RList = inf_lib[0]*1000
+lib_Phase = inf_lib[1]+1
+
+# Plot the radius v.s. Phase
+fig = plt.figure()
+ax = fig.add_subplot(111)
+Lib = ax.plot(lib_RList,lib_Phase,linewidth=2,label='Lib')
+TIR = ax.plot(RList,neff_Phase,linewidth=2,label='TIR')
+MODE = ax.plot(eigenRList,inf_Phase,linewidth=2,label='MODE solution')
+ax.set_xlabel(xlabel='radius (nm)',fontsize=20)
+ax.set_xticks([100,120,140,160,180,200])
+ax.xaxis.set_tick_params(length=6,width=3)
+plt.xticks(fontsize=18)
+ax.set_ylabel(ylabel='Phase',fontsize=20)
+ax.set_yticks([0,0.2,0.4,0.6,0.8,1])
+ax.yaxis.set_tick_params(length=6,width=3)
+plt.yticks(fontsize=18)
 plt.legend()
-plt.title('Neff of different radius')
-plt.savefig('Neff_compare.svg',format='svg',dpi=1200)
+plt.tight_layout()
+plt.savefig('Phase_compare.svg',format='svg',dpi=1200)
 plt.show()
 
+
+
+
+# TIR_neff = np.array([RList,neff_TIR])
+# Eigen_neff = np.array([eigenRList,inf_Neff])
+# np.savetxt('TIR_neff.txt',TIR_neff)
+# np.savetxt('Eigen_neff.txt',Eigen_neff)
