@@ -104,7 +104,7 @@ ax.yaxis.set_tick_params(length=6,width=3)
 plt.yticks(fontsize=18)
 plt.legend()
 plt.tight_layout()
-plt.savefig('Phase_compare.svg',format='svg',dpi=1200)
+#plt.savefig('Phase_compare.svg',format='svg',dpi=1200)
 plt.show()
 
 
