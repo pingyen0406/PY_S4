@@ -1,5 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from numpy import lib
 import scipy.signal
 import math
 
@@ -58,21 +59,30 @@ cbar.ax.tick_params(labelsize=16,length=5,width=2)
 inf_Neff = np.loadtxt('eigenMode_sweep.txt',skiprows=1)
 eigenRList = np.array([50+2*i for i in range(76)])
 
-RList = RList[25:72]
-neff_TIR = neff_TIR[25:72]
-inf_Neff = inf_Neff[25:72]
-eigenRList = eigenRList[25:72]
+RList = RList[25:73]
+neff_TIR = neff_TIR[25:73]
+inf_Neff = inf_Neff[25:73]
+eigenRList = eigenRList[25:73]
 
 Phase_TIR = []
 Phase_eigen = []
+
+# import phase from phase library
+inf_lib = np.loadtxt('noMask_Phase.txt')
+lib_RList = [100+2*i for i in range(48)]
+lib_Phase = inf_lib[70]/2/math.pi
+lib_Phase = lib_Phase[25:73]
 
 for i in range(len(neff_TIR)):
     if i == 0:
         pass     
     else:
         neff_TIR[i] -= neff_TIR[0]
-
+        lib_Phase[i] -= lib_Phase[0]
+        if lib_Phase[i]<0:
+            lib_Phase[i]+=1
 neff_TIR[0]=0
+lib_Phase[0]=0
 neff_Phase = np.array(neff_TIR)*1.2/1.55
 
 for i in range(len(inf_Neff)):
@@ -84,9 +94,8 @@ for i in range(len(inf_Neff)):
 inf_Neff[0] = 0
 inf_Phase = np.array(inf_Neff)*1.2/1.55
 
-inf_lib = np.loadtxt('TIR_library.txt')
-lib_RList = inf_lib[0]*1000
-lib_Phase = inf_lib[1]+1
+
+
 
 # Plot the radius v.s. Phase
 fig = plt.figure()
