@@ -104,19 +104,19 @@ E_in = np.loadtxt('Example_E.txt',dtype=complex)
 T_in = np.loadtxt('Example_T.txt',dtype=complex)
 phase = np.arctan2(np.imag(E_in),np.real(E_in))
 phase -= phase[0]
-phase = phase/2/math.py
+phase = phase/2/math.pi
 r_atom = np.array([i for i in range(100,275,5)])
 
-for i in phase:
-    while i <0:
-        i += 1
-    while i >1:
-        i -= 1
+for i in range(len(phase)):
+    while phase[i] <0:
+        phase[i] += 1
+    while phase[i] >1:
+        phase[i] -= 1
 # Plot the results
 fig = plt.figure()
 ax1 = fig.add_subplot(121)
 plotData1 = ax1.plot(r_atom,phase,linewidth=2,label='Phase/2pi')
 plotData2 = ax1.plot(r_atom,T_in,linewidth=2,label='T')
-ax1.xlabel('R_atom')
+ax1.set_xlabel('R_atom')
 plt.legend()
 plt.show()
