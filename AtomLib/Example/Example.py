@@ -100,16 +100,23 @@ outf2.close()
 t_stop=time.time()-t_start # total time
 print('Total elapsed time:',t_stop,'s')
     
-E_in = np.loadtxt('Example_E.txt')
-T_in = np.loadtxt('Example_T.txt')
-phase = np.atan2(np.imag(E_in),np.real(E_in))
+E_in = np.loadtxt('Example_E.txt',dtype=complex)
+T_in = np.loadtxt('Example_T.txt',dtype=complex)
+phase = np.arctan2(np.imag(E_in),np.real(E_in))
 phase -= phase[0]
+phase = phase/2/math.py
 r_atom = np.array([i for i in range(100,275,5)])
 
+for i in phase:
+    while i <0:
+        i += 1
+    while i >1:
+        i -= 1
 # Plot the results
 fig = plt.figure()
 ax1 = fig.add_subplot(121)
-plotData = ax1.plot(r_atom,phase,linewidth=2)
-ax2 = fig.add_subplot(122)
-plotData = ax2.plot(r_atom,T_in,linewidth=2)
-
+plotData1 = ax1.plot(r_atom,phase,linewidth=2,label='Phase/2pi')
+plotData2 = ax1.plot(r_atom,T_in,linewidth=2,label='T')
+ax1.xlabel('R_atom')
+plt.legend()
+plt.show()
