@@ -11,6 +11,9 @@ Nanophotonics 2022 (accepted)
 Ping-Yen Hsieh, Yu-Siang Lin, Shun-Lin Fang, and You-Chia Chang  
 CLEO 2022, paper SM4P.7.  
 
+[Metasurfaces on Silicon Photonics for Simultaneous Emission Amplitude and Phase Control](https://opg.optica.org/abstract.cfm?URI=CLEO_QELS-2022-FF2D.8)  
+Yu-Siang Lin, Ping-Yen Hsieh, Shun-Lin Fang, and You-Chia Chang  
+CLEO, paper FF2D.8. (2022)  
 
 ***
 ## Basic usage
