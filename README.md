@@ -16,7 +16,8 @@ CLEO 2022, paper SM4P.7.
 ## Basic usage
 The schematic of the simulation model:  
 
-<img src="RCWA_model.png" height="50%" width="50%" >
+<img src="RCWA_model.png" height="50%" width="50%" >  
+
 ### Example
 The Example/ contains 2 example scripts. Example.py is a simple example that can directly run in IDE.
 Or you can use the following method to read the Example.yml. The models are identical.
