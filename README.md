@@ -1,6 +1,16 @@
 # PY_S4
 The project is based on https://github.com/victorliu/S4. The S4 package with python API should be installed first.
 This project is used for the sweep of cylinder-shaped meta-atom library. But it can be modified to other shape.
+
+## Relevent publicaitons
+[Integrated Metasurfaces on Silicon Photonics for Emission Shaping and Holographic Projection](https://arxiv.org/abs/2205.10537)  
+Ping-Yen Hsieh, Shun-Lin Fang, Yu-Siang Lin, Wen-Hsien Huang, Jia-Min Shieh, Peichen Yu, and You-Chia Chang  
+Nanophotonics 2022 (accepted)  
+
+[Shaping Free-space Emission with Monolithically Integrated Metalenses on Silicon Photonic Waveguides](https://doi.org/10.1364/CLEO_SI.2022.SM4P.7)  
+Ping-Yen Hsieh, Yu-Siang Lin, Shun-Lin Fang, and You-Chia Chang  
+CLEO 2022, paper SM4P.7.  
+
 The schematic of the simulation model:
 <img src="RCWA_model.png" height="50%" width="50%" >
 ***
