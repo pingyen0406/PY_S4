@@ -1,6 +1,6 @@
 # PY_S4
-The project is based on https://github.com/victorliu/S4. The S4 package with python API should be installed first.
-This project is used for the sweep of cylinder-shaped meta-atom library. But it can be modified to other shape.
+The project is based on https://github.com/victorliu/S4. The S4 package with python API should be installed first. For the installation guide, please refer to: https://github.com/phoebe-p/S4 by [Dr. Phoebe Pearce] (https://github.com/phoebe-p). The installation becomes very simple by following her steps.
+This project is used for the sweep of cylinder-shaped meta-atom library. But it can be modified for other use related RCWA.
 
 ## Relevent publicaitons
 [Integrated Metasurfaces on Silicon Photonics for Emission Shaping and Holographic Projection](https://arxiv.org/abs/2205.10537)  
@@ -19,7 +19,7 @@ The schematic of the simulation model:
 <img src="RCWA_model.png" height="50%" width="50%" >  
 
 ### Example
-The Example/ contains 2 example scripts. Example.py is a simple example that can directly run in IDE.
+The Example/ contains 2 example scripts. The structure is from  [Nat Commun 6, 7069 (2015)](https://www.nature.com/articles/ncomms8069#citeas) by Amir Arbarbi et al.. Example.py is a simple example that can directly run in IDE.
 Or you can use the following method to read the Example.yml. The models are identical.
 ### To run the sweep
 $ python3 atom_sweep.py -i <input_parameters.yml>
