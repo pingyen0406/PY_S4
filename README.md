@@ -1,6 +1,6 @@
 # PY_S4
 The project is based on https://github.com/victorliu/S4. The S4 package with python API should be installed first. For the installation guide, please refer to: https://github.com/phoebe-p/S4 by [Dr. Phoebe Pearce](https://github.com/phoebe-p). The installation becomes very simple by following her steps.
-This project is used for the sweep of cylinder-shaped meta-atom library. But it can be modified for other use related RCWA.
+This project is used for the sweep of the cylinder-shaped meta-atom library. But it can be modified for other use related to RCWA.
 
 ## Relevent publicaitons
 [Metasurfaces on Silicon Photonic Waveguides for Simultaneous Emission Phase and Amplitude Control](https://doi.org/10.1364/OE.487589)  
