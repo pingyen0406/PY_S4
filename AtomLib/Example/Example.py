@@ -83,13 +83,9 @@ for hole_radius_nm in range(100,275,5):
     totalT = forw_P1/forw_P2 # Top emission intensity
             
     # Finding out the index of the maximum forw_A 
-    tmp=[]
-    for ix in range(len(forw_A)):
-        tmp.append(forw_A[ix])
-    x = np.abs(tmp)
-    s = np.argmax(x)
+    max_ind = np.argmax(np.abs(forw_A))
     outf1.write(str(totalT)+' ')
-    outf2.write(str(forw_A[s])+' ')
+    outf2.write(str(forw_A[max_ind])+' ')
 tmid2 = time.time()-tmid1 # timer of each height loop
 print('Elasped time for this loop:',tmid2,'s')  
 outf1.write('\n')
